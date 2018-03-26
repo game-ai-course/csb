@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net471</TargetFramework>
+    <LangVersion>7</LangVersion>
+    <RootNamespace>CG.CodersStrikeBack</RootNamespace>
+    <OutputPath>bin</OutputPath>
+    <Configurations>Debug;Release;Dev</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dev|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="gamelog*.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.0.0-beta0004" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lib\lib.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="bosses\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="bosses\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="bosses\**" />
+  </ItemGroup>
+</Project>
