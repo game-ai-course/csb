@@ -29,6 +29,7 @@ namespace CG.CodersStrikeBack
         }
 
         [Test]
+        [Explicit]
         public void Visualize()
         {
             var myAi = CreateFirstPlayer();
@@ -44,6 +45,7 @@ namespace CG.CodersStrikeBack
         }
 
         [Test]
+        [Explicit]
         public void Compare([Values(100)] int gamesCount)
         {
             string resultFileName = TestContext.CurrentContext.TestDirectory + "/win-statistics.txt";

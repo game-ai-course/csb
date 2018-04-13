@@ -35,8 +35,6 @@ namespace CG
             if (dvdv == 0) return double.PositiveInfinity;
             var drdr = dr.ScalarProd(dr);
             var sigma = Radius + other.Radius;
-            if (dr.Length() < sigma)
-                Pos = other.Pos + (Pos - other.Pos).Normalize() * sigma;
             var d = dvdr * dvdr - dvdv * (drdr - sigma * sigma);
             if (d < 0) return double.PositiveInfinity;
             var collisionTime = -(dvdr + Math.Sqrt(d)) / dvdv;
