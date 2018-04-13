@@ -10,6 +10,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dev|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;DEV;NET471</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <None Update="gamelog*.txt" CopyToOutputDirectory="PreserveNewest" />
@@ -17,17 +18,23 @@
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.0.0-beta0004" />
     <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lib\lib.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="bosses\**" />
+  <ItemGroup Condition="'$(Configuration)'!='Dev'">
+    <Compile Remove="*.dev.*" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'!='Dev'">
+    <EmbeddedResource Remove="*.dev.*" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'!='Dev'">
+    <None Remove="*.dev.*" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Remove="bosses\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="bosses\**" />
+    <None Update="viz\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

@@ -5,9 +5,9 @@ namespace CG
     public class Countdown
     {
         private readonly Stopwatch stopwatch;
-        private readonly int timeAvailableMs;
+        private readonly long timeAvailableMs;
 
-        public Countdown(int ms)
+        public Countdown(long ms)
         {
             stopwatch = Stopwatch.StartNew();
             timeAvailableMs = ms;
@@ -24,6 +24,10 @@ namespace CG
         }
 
         public static implicit operator Countdown(int milliseconds)
+        {
+            return new Countdown(milliseconds);
+        }
+        public static implicit operator Countdown(long milliseconds)
         {
             return new Countdown(milliseconds);
         }

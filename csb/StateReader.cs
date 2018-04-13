@@ -25,17 +25,27 @@ namespace CG.CodersStrikeBack
 
         public static State Read(string init, string state)
         {
-            var initData = new StateReader(init).ReadInitData();
-            return new StateReader(state).ReadState(initData);
+            var initData = ReadInitData(init);
+            return ReadState(initData, state);
         }
 
-        public State ReadState(InitData initData, bool isInitialState = false)
+        public static State ReadState(InitData init, string state)
+        {
+            return new StateReader(state).ReadState(init);
+        }
+
+        public static InitData ReadInitData(string init)
+        {
+            return new StateReader(init).ReadInitData();
+        }
+
+        public State ReadState(InitData init, bool isInitialState = false)
         {
             var myPods = new[] { ReadPod(), ReadPod() };
             var hisPods = new[] { ReadPod(), ReadPod() };
             if (logToError)
                 Console.Error.WriteLine();
-            return new State(initData.Checkpoints, myPods, hisPods, isInitialState, new bool[2]);
+            return new State(init.Checkpoints, myPods, hisPods, isInitialState, new bool[2]);
         }
 
         private Pod ReadPod()

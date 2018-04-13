@@ -1,16 +1,15 @@
-using System;
 using System.Linq;
 
 namespace CG.CodersStrikeBack
 {
-    public class FastAi : IAi
+    public class FastAi : IPodAi, IAi
     {
         public PodMove[] GetMoves(State state, Countdown countdown)
         {
-            return state.MyPods.Select(p => GenerateLeaderMove(p, state)).ToArray();
+            return state.MyPods.Select(p => GetMove(p, state)).ToArray();
         }
 
-        private PodMove GenerateLeaderMove(Pod pod, State state)
+        public PodMove GetMove(Pod pod, State state)
         {
             var cp = state.Checkpoints[pod.NextCheckpointId];
             var target = cp - 3 * pod.V;

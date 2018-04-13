@@ -60,6 +60,11 @@ namespace CG
             return new VecD(X.BoundTo(minX, maxX), Y.BoundTo(minY, maxY));
         }
 
+        public VecD BoundLengthTo(double maxLength)
+        {
+            return Resize(Length().BoundTo(0, maxLength));
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;

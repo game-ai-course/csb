@@ -17,7 +17,7 @@ namespace CG.CodersStrikeBack
         [Test]
         public void MovePodToTarget([Range(1, 15, 1)]int simulationTime)
         {
-            var state = StateReader.Read("3|2|10 000 2000|16000 9000",
+            var state = StateReader.Read("3|2|10000 2000|16000 9000",
                 "8000 2000 0 0 0 0|0 200 0 0 0 1|0 400 0 0 0 1|0 6000 0 0 0 1");
             var fastAi = new FastAi();
             var evaluator = new TestStateEvaluator();
